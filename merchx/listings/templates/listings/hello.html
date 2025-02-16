@@ -1,0 +1,13 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<h1>Hello, world!</h1>
+<p>J'ai {{ bands.count }} groupes preferees :</p>
+<ul>
+    {% for band in bands %}
+    <li style="font-weight: bold;">{{ band.name|upper }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}

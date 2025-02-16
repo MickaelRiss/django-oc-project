@@ -1,0 +1,12 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+<h1>Page listings</h1>
+<p>Voici quelques listings (j'en ai {listings.count} au total):</p>
+<ul>
+    {% for listing in listings %}
+    <li>{{ listing.title }}</li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
