@@ -8,6 +8,12 @@
         <title>Merchx</title>
     </head>
     <body>
+        <nav>
+            <a href="{% url 'band-list' %}">Liste des groupes</a>
+            <a href="{% url 'listings' %}">Voir le listing</a>
+            <a href="{% url 'about' %}">About</a>
+            <a href="{% url 'contact' %}">Contact</a>
+        </nav>
         {% block content %}
         {% endblock content %}
     </body>
