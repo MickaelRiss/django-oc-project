@@ -28,6 +28,19 @@ def band_create(request):
 
     return render(request, 'listings/band_create.html', {'form': form})
 
+def band_update(request, band_id):
+    band = Band.objects.get(id = band_id)
+    if request.method == 'POST':
+        form = BandForm(request.POST, instance=band)
+        if form.is_valid():
+            form.save()
+            return redirect('band-detail', band_id)
+        
+    else:
+        form = BandForm(instance=band)
+
+    return render (request, 'listings/band_update.html', {'form': form})
+
 def about(request):
     return render(request, 'listings/about.html')
 
@@ -57,6 +70,20 @@ def listing_detail(request, listing_id):
     except Listing.DoesNotExist:
         raise Http404
     return render(request, 'listings/listing_detail.html', {'listing': listing, 'band': band})
+
+
+def listing_update(request, listing_id):
+    listing = Listing.objects.get(id = listing_id)
+    if request.method == 'POST':
+        form = ListingForm(request.POST, instance=listing)
+        if form.is_valid():
+            form.save()
+            return redirect('listing-detail', listing_id)
+        
+    else:
+        form = ListingForm(instance=listing)
+        
+    return render (request, 'listings/listing_update.html', {'form': form})
 
 def contact(request):
     if request.method == 'POST':
