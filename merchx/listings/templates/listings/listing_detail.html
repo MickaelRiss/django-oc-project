@@ -1,0 +1,10 @@
+{% extends 'listings/base.html' %}
+
+{% block content %}
+
+<h2>{{ listing.title }}</h2>
+<p>{{ listing.description }}</p>
+<p>is it sold? {{ listing.sold|yesno }}</p>
+<p>Artist : <a href="{% url 'band-detail' listing.band_id %}">{{ band.name }}</a></p>
+
+{% endblock content %}

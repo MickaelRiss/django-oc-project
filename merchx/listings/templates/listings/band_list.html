@@ -6,8 +6,10 @@
 <p>J'ai {{ bands.count }} groupes preferees :</p>
 <ul>
     {% for band in bands %}
-    <li style="font-weight: bold;">{{ band.name|upper }}</li>
+    <li><a href="{% url 'band-detail' band.id %}">{{ band.name }}</a></li>
     {% endfor %}
 </ul>
+
+<a href="{% url 'band-create' %}">Add a new band</a>
 
 {% endblock content %}
