@@ -6,5 +6,8 @@
 <p>{{ listing.description }}</p>
 <p>is it sold? {{ listing.sold|yesno }}</p>
 <p>Artist : <a href="{% url 'band-detail' listing.band_id %}">{{ band.name }}</a></p>
+<br>
+<button><a href="{% url 'listing-update' listing.id %}">Edit</a></button>
+<button><a href="{% url 'listing-delete' listing.id %}">Delete</a></button>
 
 {% endblock content %}
