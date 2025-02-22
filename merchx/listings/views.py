@@ -3,6 +3,7 @@ from django.http import Http404
 from listings.models import Band, Listing
 from listings.forms import ContactUsForm, BandForm, ListingForm
 from django.core.mail import send_mail
+from django.contrib import messages
 
 # Create your views here.
 def band_list(request):
@@ -40,6 +41,14 @@ def band_update(request, band_id):
         form = BandForm(instance=band)
 
     return render (request, 'listings/band_update.html', {'form': form})
+
+def band_delete(request, band_id):
+    band = Band.objects.get(id=band_id)
+    if request.method == 'POST':
+        band.delete()
+        messages.success(request, 'Le groupe a ete supprime')
+        return redirect('band-list')
+    return render(request, 'listings/band_delete.html', {'band': band})
 
 def about(request):
     return render(request, 'listings/about.html')
@@ -84,6 +93,16 @@ def listing_update(request, listing_id):
         form = ListingForm(instance=listing)
         
     return render (request, 'listings/listing_update.html', {'form': form})
+
+
+def listing_delete(request, listing_id):
+    listing = Listing.objects.get(id=listing_id)
+    if request.method == 'POST':
+        listing.delete()
+        messages.success(request, 'Le listing a ete supprime')
+        return redirect('listings')
+
+    return render(request, 'listings/listing_delete.html', {'listing': listing})
 
 def contact(request):
     if request.method == 'POST':
